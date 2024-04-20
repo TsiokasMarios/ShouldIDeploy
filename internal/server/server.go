@@ -1,10 +1,9 @@
 package server
 
 import (
+	"ShouldIDeploy/cmd/utils"
 	"fmt"
 	"net/http"
-	"os"
-	"strconv"
 	"time"
 
 	_ "github.com/joho/godotenv/autoload"
@@ -15,9 +14,12 @@ type Server struct {
 }
 
 func NewServer() *http.Server {
-	port, _ := strconv.Atoi(os.Getenv("PORT"))
+
+	utils.LoadBundles()
+
+	//port, _ := strconv.Atoi(os.Getenv("PORT"))
 	NewServer := &Server{
-		port: port,
+		port: 8080,
 	}
 
 	// Declare Server config
@@ -28,6 +30,8 @@ func NewServer() *http.Server {
 		ReadTimeout:  10 * time.Second,
 		WriteTimeout: 30 * time.Second,
 	}
+
+	println("Server is running on port: ", NewServer.port)
 
 	return server
 }
