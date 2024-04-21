@@ -21,7 +21,6 @@ func NewServer() *http.Server {
 	NewServer := &Server{
 		port: 8080,
 	}
-
 	// Declare Server config
 	server := &http.Server{
 		Addr:         fmt.Sprintf(":%d", NewServer.port),
